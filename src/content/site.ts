@@ -14,7 +14,7 @@ export const site = {
   email: "dhruvthakor6701@gmail.com",
   linkedin: "https://www.linkedin.com/in/dhruv234/",
   github: "https://github.com/dhruvthakor",
-  resume: "/Dhruv-Thakor-Resume.pdf",
+  resume: "/.Dhruv-Thakor-Resume.pdf",
 };
 
 export const hero = {
