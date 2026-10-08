@@ -77,11 +77,6 @@ const personJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-CA" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <head>
-        <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
-      </head>
       <body className="font-sans">
         <a
           href="#main"

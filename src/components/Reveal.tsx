@@ -1,49 +1,24 @@
-"use client";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
-
-/** Fades content in the first time it scrolls into view. Disabled by prefers-reduced-motion in CSS. */
+/**
+ * Fades content in as it scrolls into view using CSS scroll-driven animations.
+ * No JavaScript: content is always visible where the feature is unsupported,
+ * and prefers-reduced-motion disables it in globals.css.
+ */
 export function Reveal({
   children,
-  delay = 0,
   as: Tag = "div",
   className = "",
+  style,
 }: {
   children: ReactNode;
-  delay?: number;
+  delay?: number; // kept for API compatibility; scroll-driven reveals don't need delays
   as?: ElementType;
   className?: string;
+  style?: CSSProperties;
 }) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (!("IntersectionObserver" in window)) {
-      setVisible(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <Tag
-      ref={ref}
-      data-visible={visible}
-      className={`reveal ${className}`}
-      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
-    >
+    <Tag className={`reveal ${className}`} style={style}>
       {children}
     </Tag>
   );

@@ -72,18 +72,17 @@ body {
   border-radius: 6px;
 }
 
-/* Scroll reveal — elements start slightly lowered and fade in once visible. */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: var(--reveal-delay, 0ms);
+/* Scroll reveal — pure CSS, content stays visible where unsupported. */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
 }
-.reveal[data-visible="true"] {
-  opacity: 1;
-  transform: none;
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
 }
 
 /* Hero monitor line */
@@ -135,6 +134,6 @@ body {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { animation: none !important; }
   .trace-line { stroke-dashoffset: 0; }
 }
