@@ -13,7 +13,7 @@ export const site = {
   location: "Halifax, Nova Scotia",
   email: "dhruvthakor6701@gmail.com",
   linkedin: "https://www.linkedin.com/in/dhruv234/",
-  github: "", // [ADD LINK] — add your GitHub URL to show it across the site
+  github: "https://github.com/dhruvthakor",
   resume: "/Dhruv-Thakor-Resume.pdf",
 };
 
